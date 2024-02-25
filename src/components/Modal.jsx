@@ -1,16 +1,11 @@
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
-import useModal from '../hooks/useModal'
 import Mensaje from './Mensaje'
 import CerrarBtn from '../img/cerrar.svg'
 
 const Modal = ({
-    setModal,
-    // animarModal,
-    // setAnimarModal,
-    // guardarGasto,
-    // gastoEditar,
-    // setGastoEditar
+    setModal
 }) => {
 
     const [mensaje, setMensaje] = useState('')    
@@ -22,7 +17,13 @@ const Modal = ({
     // Para identificar si estamos editando o creando un nuevo registro
     const [id, setId] = useState('')
 
-    const { gastoEditar, setGastoEditar, guardarGasto, animarModal, setAnimarModal } = usePlanificadorGastos()
+    const { 
+        gastoEditar, 
+        setGastoEditar, 
+        guardarGasto, 
+        animarModal, 
+        setAnimarModal
+    } = usePlanificadorGastos()
 
     useEffect(() => {
         if (Object.keys(gastoEditar).length > 0) {
@@ -32,7 +33,7 @@ const Modal = ({
             setFecha(gastoEditar.fecha)
             setId(gastoEditar.id)
         }
-    }, [])
+    }, [gastoEditar])
 
     const ocultarModal = () => {
         setTimeout(() => {
@@ -132,11 +133,7 @@ const Modal = ({
 }
 
 Modal.propTypes = {
-    // animarModal: PropTypes.bool.isRequired,
-    // setAnimarModal: PropTypes.func.isRequired,
-    // guardarGasto: PropTypes.func,
-    // gastoEditar: PropTypes.object,
-    // setGastoEditar: PropTypes.func
+    setModal: PropTypes.func.isRequired
 }
 
 export default Modal

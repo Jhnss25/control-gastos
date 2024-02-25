@@ -1,5 +1,4 @@
-import { createContext, useEffect, /* useEffect, */ useState } from "react"
-import useModal from "../hooks/useModal"
+import { createContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 import { generarId } from "../helpers"
 
@@ -12,7 +11,7 @@ export const PlanificadorGastosProvider = ({ children }) => {
     const [presupuesto, setPresupuesto] = useState(Number(localStorage.getItem('presupuesto')) || 0)
     const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
 
-    const [modal, setModal ] = useModal()
+    const [modal, setModal ] = useState(false)
     const [animarModal, setAnimarModal] = useState(false)
     
     const [gastosFiltrados, setGastosFiltrados] = useState([])
@@ -86,7 +85,10 @@ export const PlanificadorGastosProvider = ({ children }) => {
                 setGastoEditar,
                 filtro,
                 setFiltro,
+
                 guardarGasto,
+                modal,
+                setModal,
                 animarModal,
                 setAnimarModal,
                 eliminarGasto

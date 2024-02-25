@@ -1,16 +1,9 @@
-import PropTypes from 'prop-types'
 import Gasto from './Gasto'
 import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
-const ListadoGastos = ({
-    // gastos,
-    // setGastoEditar,
-    // eliminarGasto,
-    // filtro,
-    // gastosFiltrados
-}) => {
+const ListadoGastos = () => {
 
-    const { gastos, filtro, gastosFiltrados, setGastoEditar, eliminarGasto } = usePlanificadorGastos()
+    const { gastos, filtro, gastosFiltrados } = usePlanificadorGastos()
 
     return (
         <div className="listado-gastos contenedor">
@@ -19,14 +12,12 @@ const ListadoGastos = ({
                 <>
                     <h2>{gastosFiltrados.length ? 'Gastos' : 'No Hay Gastos en esta Categoría'}</h2>
 
-                    {/* {gastosFiltrados.map(gasto => (
+                    {gastosFiltrados.map(gasto => (
                         <Gasto
                             gasto={gasto}
-                            setGastoEditar={setGastoEditar}
                             key={gasto.id}
-                            eliminarGasto={eliminarGasto}
                         />
-                    ))} */}
+                    ))}
                 </>
             ) : (
                 <>
@@ -35,23 +26,13 @@ const ListadoGastos = ({
                     {gastos.map(gasto => (
                         <Gasto
                             gasto={gasto}
-                            setGastoEditar={setGastoEditar}
                             key={gasto.id}
-                            eliminarGasto={eliminarGasto}
                         /> 
                     ))}
                 </>
             )}
         </div>
     )
-}
-
-ListadoGastos.propTypes = {
-    // gastos: PropTypes.array.isRequired,
-    // setGastoEditar: PropTypes.func.isRequired,
-    // eliminarGasto: PropTypes.func,
-    // filtro: PropTypes.string,
-    // gastosFiltrados: PropTypes.array,
 }
 
 export default ListadoGastos

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import usePlanificadorGastos from './hooks/usePlanificadorGastos'
-import useModal from './hooks/useModal'
 
 import Header from './components/Header'
 import ListadoGastos from './components/ListadoGastos'
@@ -13,13 +12,20 @@ import IconNuevoGasto from './img/nuevo-gasto.svg'
 
 function App() {
 
-    // const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
-
-    const { setPresupuesto, isValidPresupuesto, setIsValidPresupuesto, setAnimarModal, setGastoEditar, setGastos } = usePlanificadorGastos()
-    const [ modal, setModal ] = useModal()
-
     const [openModal, setOpenModal]= useState(false)
     const [resetear, setResetear] = useState(false)
+
+    const {
+        setPresupuesto,
+        isValidPresupuesto,
+        setIsValidPresupuesto, 
+        setAnimarModal, 
+        setGastoEditar, 
+        setGastos, 
+        modal, 
+        setModal
+    } = usePlanificadorGastos()
+
 
     useEffect(() => {
         const presupuestoLS = Number(localStorage.getItem('presupuesto')) ?? 0
@@ -54,18 +60,8 @@ function App() {
             {isValidPresupuesto && (
                 <>
                     <main>
-                        <Filtros
-                            // filtro={filtro}
-                            // setFiltro={setFiltro}
-                        />
-                        <ListadoGastos
-                            // gastos={gastos}
-                            // setGastoEditar={setGastoEditar}
-                            // eliminarGasto={eliminarGasto}
-                            // filtro={filtro}
-                            // gastosFiltrados={gastosFiltrados}
-                        />
-
+                        <Filtros />
+                        <ListadoGastos />
                     </main>
                     <div className="nuevo-gasto">
                         <img
@@ -82,11 +78,6 @@ function App() {
             {modal && (
                 <Modal
                     setModal={setModal}
-                    // animarModal={animarModal}
-                    // setAnimarModal={setAnimarModal}
-                    // guardarGasto={guardarGasto}
-                    // gastoEditar={gastoEditar}
-                    // setGastoEditar={setGastoEditar}
                 />
             )}
         </div>

@@ -17,6 +17,7 @@ import IconoGastos from '../img/icono_gastos.svg'
 import IconoOcio from '../img/icono_ocio.svg'
 import IconoSalud from '../img/icono_salud.svg'
 import IconoSuscripciones from '../img/icono_suscripciones.svg'
+import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
 // Para agregar la imagen según su categoría
 const diccionarioIconos = {
@@ -29,7 +30,9 @@ const diccionarioIconos = {
     suscripciones: IconoSuscripciones
 }
 
-const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
+const Gasto = ({ gasto }) => {
+    
+    const {setGastoEditar, eliminarGasto} = usePlanificadorGastos()
     
     const {nombre, cantidad, categoria, id, fecha} = gasto
 
@@ -90,8 +93,6 @@ const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
 
 Gasto.propTypes = {
     gasto: PropTypes.object.isRequired,
-    setGastoEditar: PropTypes.func,
-    eliminarGasto: PropTypes.func,
 }
 
 export default Gasto
