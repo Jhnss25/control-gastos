@@ -1,4 +1,5 @@
 import { createContext, useEffect, /* useEffect, */ useState } from "react"
+import useModal from "../hooks/useModal"
 import PropTypes from 'prop-types'
 import { generarId } from "../helpers"
 
@@ -6,11 +7,12 @@ const PlanificadorGastosContext = createContext()
 
 export const PlanificadorGastosProvider = ({ children }) => {
 
-    const [gastos, setGastos] = useState( JSON.parse(localStorage.getItem('gastos')) || [] )
+    const [gastos, setGastos] = useState(JSON.parse(localStorage.getItem('gastos')) || [])
 
     const [presupuesto, setPresupuesto] = useState(Number(localStorage.getItem('presupuesto')) || 0)
+    const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
 
-    const [modal, setModal] = useState(false)
+    const [modal, setModal ] = useModal()
     const [animarModal, setAnimarModal] = useState(false)
     
     const [gastosFiltrados, setGastosFiltrados] = useState([])
@@ -72,18 +74,19 @@ export const PlanificadorGastosProvider = ({ children }) => {
     return (
         <PlanificadorGastosContext.Provider
             value={{
-                presupuesto,
                 gastos,
-                gastosFiltrados,
-                setPresupuesto,
                 setGastos,
+                presupuesto,
+                setPresupuesto,
+                isValidPresupuesto,
+                setIsValidPresupuesto,
+
+                gastosFiltrados,
                 gastoEditar,
                 setGastoEditar,
                 filtro,
                 setFiltro,
                 guardarGasto,
-                modal,
-                setModal,
                 animarModal,
                 setAnimarModal,
                 eliminarGasto
@@ -95,7 +98,7 @@ export const PlanificadorGastosProvider = ({ children }) => {
 }
 
 PlanificadorGastosProvider.propTypes = {
-    children: PropTypes.object.isRequired
+    children: PropTypes.node.isRequired
 }
 
 export default PlanificadorGastosContext

@@ -2,15 +2,13 @@ import PropTypes from 'prop-types'
 
 import NuevoPresupuesto from "./NuevoPresupuesto"
 import ControlPresupuesto from './ControlPresupuesto'
+import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
 const Header = ({
-    // gastos,
-    // setGastos,
-    isValidPresupuesto,
-    setIsValidPresupuesto,
     setOpenModal
 }) => {
 
+    const {isValidPresupuesto} = usePlanificadorGastos()
 
     return (
         <header>
@@ -18,24 +16,16 @@ const Header = ({
 
             {isValidPresupuesto ? (
                 <ControlPresupuesto
-                    // gastos={gastos}
-                    // setIsValidPresupuesto={setIsValidPresupuesto}
                     setOpenModal={setOpenModal}
                 />
             ) : (
-                <NuevoPresupuesto
-                    setIsValidPresupuesto={setIsValidPresupuesto}
-                />
+                <NuevoPresupuesto />
             )}
         </header >
     )
 }
 
 Header.propTypes = {
-    isValidPresupuesto: PropTypes.bool,
-    setIsValidPresupuesto: PropTypes.func,
-    // gastos: PropTypes.array,
-    // setGastos: PropTypes.func,
     setOpenModal: PropTypes.func
 }
 

@@ -6,9 +6,6 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
 const ControlPresupuesto = ({
-    // gastos,
-    // setGastos,
-    // setIsValidPresupuesto,
     setOpenModal
 }) => {
 
@@ -86,9 +83,6 @@ const ControlPresupuesto = ({
 }
 
 ControlPresupuesto.propTypes = {
-    // gastos: PropTypes.array.isRequired,
-    // setGastos: PropTypes.func,
-    // setIsValidPresupuesto: PropTypes.func,
     setOpenModal: PropTypes.func
 }
 

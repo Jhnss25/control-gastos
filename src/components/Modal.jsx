@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
+import useModal from '../hooks/useModal'
 import Mensaje from './Mensaje'
 import CerrarBtn from '../img/cerrar.svg'
-import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
 const Modal = ({
     setModal,
-    animarModal,
-    setAnimarModal,
+    // animarModal,
+    // setAnimarModal,
     // guardarGasto,
     // gastoEditar,
-    // setGastoEditar0
+    // setGastoEditar
 }) => {
 
     const [mensaje, setMensaje] = useState('')    
@@ -22,7 +22,7 @@ const Modal = ({
     // Para identificar si estamos editando o creando un nuevo registro
     const [id, setId] = useState('')
 
-    const {gastoEditar, setGastoEditar, guardarGasto} = usePlanificadorGastos()
+    const { gastoEditar, setGastoEditar, guardarGasto, animarModal, setAnimarModal } = usePlanificadorGastos()
 
     useEffect(() => {
         if (Object.keys(gastoEditar).length > 0) {
@@ -39,13 +39,13 @@ const Modal = ({
             setModal(false)
             setGastoEditar({})
         }, 500)
-
+        
         setAnimarModal(false)
     }
-
+    
     const handleSubmit = e => {
         e.preventDefault()
-
+        
         if ([nombre, cantidad, categoria].includes('')) {
             setMensaje('Todos los campos son obligatorios')
             setTimeout(() => {
@@ -61,7 +61,7 @@ const Modal = ({
         <div className="modal">
             <div
                 className="cerrar-modal"
-                >
+            >
                 <img
                     src={CerrarBtn}
                     alt="Cerrar Modal"
@@ -73,7 +73,7 @@ const Modal = ({
                 onSubmit={handleSubmit}
                 className={`formulario ${animarModal ? 'animar' : 'cerrar'}`}
             >
-                <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
+                <legend>{gastoEditar?.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
@@ -123,7 +123,7 @@ const Modal = ({
 
                 <input
                     type="submit"
-                    value={gastoEditar.nombre ? 'Guardar Cambios' : 'Añadir Gasto'}
+                    value={gastoEditar?.nombre ? 'Guardar Cambios' : 'Añadir Gasto'}
                 />
             </form>
             
@@ -132,12 +132,11 @@ const Modal = ({
 }
 
 Modal.propTypes = {
-    setModal: PropTypes.func.isRequired,
-    animarModal: PropTypes.bool.isRequired,
-    setAnimarModal: PropTypes.func.isRequired,
-    guardarGasto: PropTypes.func,
-    gastoEditar: PropTypes.object,
-    setGastoEditar: PropTypes.func
+    // animarModal: PropTypes.bool.isRequired,
+    // setAnimarModal: PropTypes.func.isRequired,
+    // guardarGasto: PropTypes.func,
+    // gastoEditar: PropTypes.object,
+    // setGastoEditar: PropTypes.func
 }
 
 export default Modal

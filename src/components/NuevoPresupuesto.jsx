@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Mensaje from './Mensaje'
 
 import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
-const NuevoPresupuesto = ({
-    setIsValidPresupuesto
-}) => {
+const NuevoPresupuesto = () => {
 
     const [mensaje, setMensaje] = useState('')
-
-    const {presupuesto, setPresupuesto} = usePlanificadorGastos()
+    const {presupuesto, setPresupuesto, setIsValidPresupuesto} = usePlanificadorGastos()
 
     const handlePresupuesto = (e) => {
         e.preventDefault()
@@ -42,10 +38,6 @@ const NuevoPresupuesto = ({
             </form>
         </div>
     )
-}
-
-NuevoPresupuesto.propTypes = {
-    setIsValidPresupuesto: PropTypes.func
 }
   
   export default NuevoPresupuesto

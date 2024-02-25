@@ -4,13 +4,13 @@ import usePlanificadorGastos from '../hooks/usePlanificadorGastos'
 
 const ListadoGastos = ({
     // gastos,
-    setGastoEditar,
-    eliminarGasto,
+    // setGastoEditar,
+    // eliminarGasto,
     // filtro,
     // gastosFiltrados
 }) => {
 
-    const { gastos, filtro, gastosFiltrados } = usePlanificadorGastos()
+    const { gastos, filtro, gastosFiltrados, setGastoEditar, eliminarGasto } = usePlanificadorGastos()
 
     return (
         <div className="listado-gastos contenedor">
@@ -19,14 +19,14 @@ const ListadoGastos = ({
                 <>
                     <h2>{gastosFiltrados.length ? 'Gastos' : 'No Hay Gastos en esta Categoría'}</h2>
 
-                    {gastosFiltrados.map(gasto => (
+                    {/* {gastosFiltrados.map(gasto => (
                         <Gasto
                             gasto={gasto}
                             setGastoEditar={setGastoEditar}
                             key={gasto.id}
                             eliminarGasto={eliminarGasto}
                         />
-                    ))}
+                    ))} */}
                 </>
             ) : (
                 <>
@@ -48,10 +48,10 @@ const ListadoGastos = ({
 
 ListadoGastos.propTypes = {
     // gastos: PropTypes.array.isRequired,
-    setGastoEditar: PropTypes.func.isRequired,
-    eliminarGasto: PropTypes.func,
-    filtro: PropTypes.string,
-    gastosFiltrados: PropTypes.array,
+    // setGastoEditar: PropTypes.func.isRequired,
+    // eliminarGasto: PropTypes.func,
+    // filtro: PropTypes.string,
+    // gastosFiltrados: PropTypes.array,
 }
 
 export default ListadoGastos
